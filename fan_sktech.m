@@ -90,6 +90,6 @@ void loop()
 int fanSpeed(int speed) //speed% 0-100
 {
 
-analogWrite(fan, 255 * speed);
+analogWrite(fan, 0.255 * speed);
 
 }
