@@ -53,12 +53,12 @@ While meat_temp < meat_set - carry_over
 /*-----------input/output-------------*/
 long meattemp = A0;
 long airtemp = A1;
-long fanspeed =A3;
+long fan=A3;
 
 /*-----------user varables------------*/
 int airsetpoint;
 int meatsetpoint;
-int caddrry_over = 5;
+int carry_over = 5;
 int wait = 1000
 
 void setup()
@@ -66,10 +66,11 @@ void setup()
 	Serial.begin(9600);
 	pinMode(meattemp, INPUT);
 	pinMode(airtemp, INPUT);
-	pinMode(fanspeed, OUTPUT);
+	pinMode(fan, OUTPUT);
 }
 	
 /*--------simple meat temp------------*/
+
 void loop()
 {
 	analogRead(meattemp);
@@ -78,10 +79,17 @@ void loop()
 	while (meattemp < meatsetpoint - carry_over)
 	
    if(airtemp < airsetpoint - 5)
-   analogWrite(fanspeed, HIGH);
+   fanspeed(0);
 	
-	else analogWrite(fanspeed, LOW);
+	else fanspeed(100);
 	delay(wait);	
 
 	
+}
+
+int fanSpeed(int speed) //speed% 0-100
+{
+
+analogWrite(fan, 255 * speed);
+
 }
